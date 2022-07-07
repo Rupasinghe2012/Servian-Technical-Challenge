@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "tf_state" {
-  bucket = var.bucket_name
+  bucket = "${data.aws_caller_identity.current.account_id}-${var.bucket_name}"
   acl    = "private"
   tags   = var.s3_tags
 

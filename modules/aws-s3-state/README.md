@@ -12,7 +12,7 @@ This module should be called using the following configuration:
       bucket_name = "123456789-terraform-state"
     }
 
-The above example is the required minimum configuration for creating an S3 bucket for use as a Terraform backend.
+The above example is the required minimum configuration for creating an S3 bucket for use as a Terraform backend. Bucket will be created as ${ACCOUNT_ID}-bucket-name.
 
 ### Required Variables
 - `bucket_name` (string): The name of the AWS S3 bucket to create
