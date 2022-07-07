@@ -26,6 +26,6 @@ module "public_key_pem" {
 }
 
 resource "aws_key_pair" "key_pair" {
-  keypair_name = var.keypair_name
-  public_key   = module.public_key_pem.secret_value
+  key_name   = var.keypair_name
+  public_key = module.public_key_pem.secret_value
 }
