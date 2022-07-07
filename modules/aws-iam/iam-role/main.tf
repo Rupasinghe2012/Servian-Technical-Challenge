@@ -3,7 +3,7 @@ resource "aws_iam_role" "iam_role" {
   description = var.description
   tags        = var.tags
 
-  assume_role_policy = var.assume_role_policy
+  assume_role_policy   = var.assume_role_policy
   max_session_duration = var.max_session_duration
 }
 

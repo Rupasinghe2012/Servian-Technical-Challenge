@@ -59,12 +59,6 @@ variable "role_max_session_duration" {
 }
 
 variable "tags" {
-  type = map
-  default = {
-    Terraform   = "true"
-    AppID       = ""
-    AppName     = ""
-    GroupOwner  = ""
-    environment = ""
-  }
+  type    = map(any)
+  default = {}
 }
