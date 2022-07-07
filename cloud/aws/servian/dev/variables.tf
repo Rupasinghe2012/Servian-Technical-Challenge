@@ -90,6 +90,31 @@ variable "asg_min_size" {
   default     = 1
 }
 
+variable "postgres_rds_vars" {
+  description = "PostgreSQL RDS Variables"
+  type        = map(any)
+  default = {
+    storage                    = "20"
+    engine                     = "postgres"
+    engine_version             = "13.6"
+    auto_minor_version_upgrade = false
+    instance_class             = "db.t2.micro"
+    instance_identifier        = "servian-postgres-dev"
+    final_snapshot_identifier  = "servian-postgres-dev-snapshot"
+    port                       = "5432"
+    defaultdb                  = "postgres_dev"
+    public_access              = false
+    enable_multi_az            = true
+    ca_cert_identifier         = "rds-ca-2019"
+    rds_subnet_group_name      = "servian-us-east-1-dev"
+    pg_description             = "servian Dev RDS Parameter Group for PostgreSQL 13"
+    pg_name                    = "servian-dev-postgres13"
+    pg_rds_family              = "postgres13"
+    username                   = "postgres"
+    az                         = "us-east-1c"
+  }
+
+}
 variable "tags" {
   description = "Required map(string). AWS tags."
   type        = map(string)
