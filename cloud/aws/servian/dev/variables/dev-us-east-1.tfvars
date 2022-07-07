@@ -1,7 +1,8 @@
 #General
-app         = "servian"
-aws_region  = "us-east-1"
-environment = "dev"
+app          = "servian"
+aws_region   = "us-east-1"
+environment  = "dev"
+keypair_name = "servian-key"
 
 # VPC
 vpc_cidr         = "10.34.16.0/20"

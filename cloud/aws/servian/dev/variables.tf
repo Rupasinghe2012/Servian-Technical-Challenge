@@ -54,6 +54,12 @@ variable "additional_priv_sn_tags" {
   }
 }
 
+variable "keypair_name" {
+  description = "Keypair name"
+  type        = string
+  default     = "test"
+}
+
 variable "tags" {
   description = "Required map(string). AWS tags."
   type        = map(string)
