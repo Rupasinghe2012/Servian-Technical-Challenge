@@ -2,5 +2,5 @@ module "key-pair" {
   source = "../../../../modules/aws-keypair/"
 
   keypair_name = var.keypair_name
-  tags = var.tags
+  tags         = var.tags
 }

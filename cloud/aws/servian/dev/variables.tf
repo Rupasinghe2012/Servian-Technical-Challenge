@@ -10,7 +10,7 @@ variable "vpc_cidr" {
   default = "20.10.0.0/16"
 }
 
-variable "app" {
+variable "app_name" {
   default = "servian"
 }
 
@@ -58,6 +58,36 @@ variable "keypair_name" {
   description = "Keypair name"
   type        = string
   default     = "test"
+}
+
+variable "bastion_instance_type" {
+  description = "Instance type for Bastion"
+  type        = string
+  default     = "t2.medium"
+}
+
+variable "block_volume_size" {
+  description = "Root volume size"
+  type        = string
+  default     = 300
+}
+
+variable "asg_desired_capacity" {
+  description = "Autoscaling group desired capacity"
+  type        = string
+  default     = 1
+}
+
+variable "asg_max_size" {
+  description = "Autoscaling group maximum size"
+  type        = string
+  default     = 1
+}
+
+variable "asg_min_size" {
+  description = "Autoscaling group minimum size"
+  type        = string
+  default     = 1
 }
 
 variable "tags" {

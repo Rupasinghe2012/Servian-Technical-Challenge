@@ -1,5 +1,5 @@
 locals {
-  vpc_name = "${var.app}-${data.aws_region.current.name}-${var.environment}"
+  vpc_name = "${var.app_name}-${data.aws_region.current.name}-${var.environment}"
   region   = data.aws_region.current.name
 }
 
