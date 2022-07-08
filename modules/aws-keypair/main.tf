@@ -14,11 +14,11 @@ module "private_key_pem" {
   })
 }
 
-module "public_key_pem" {
+module "public_key_openssh" {
   source = "../aws-secret/"
 
-  secret_name  = "/${var.keypair_name}/ssh/public_key_pem"
-  secret_value = tls_private_key.my_tls.public_key_pem
+  secret_name  = "/${var.keypair_name}/ssh/public_key_openssh"
+  secret_value = tls_private_key.my_tls.public_key_openssh
 
   tags = merge(var.tags, {
     Name = var.keypair_name
@@ -27,5 +27,5 @@ module "public_key_pem" {
 
 resource "aws_key_pair" "key_pair" {
   key_name   = var.keypair_name
-  public_key = module.public_key_pem.secret_value
+  public_key = module.public_key_openssh.secret_value
 }
