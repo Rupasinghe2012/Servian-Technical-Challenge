@@ -199,13 +199,13 @@ variable "vpc_flow_log_permissions_boundary" {
 variable "create_flow_log_cloudwatch_log_group" {
   description = "Whether to create CloudWatch log group for VPC Flow Logs"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "create_flow_log_cloudwatch_iam_role" {
   description = "Whether to create IAM role for VPC Flow Logs"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "flow_log_traffic_type" {
