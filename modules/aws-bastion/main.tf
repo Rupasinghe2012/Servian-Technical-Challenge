@@ -19,7 +19,7 @@ chmod 700 get_helm.sh
 rm get_helm.sh
 
 # Install KUBECTL
-curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 chmod +x ./kubectl
 mv ./kubectl /usr/local/bin/kubectl
 
@@ -41,6 +41,7 @@ USERDATA
 # launch configuration for the bastion server
 resource "aws_launch_configuration" "bastion_server" {
   associate_public_ip_address = var.bastion_public_ip_enabled
+  iam_instance_profile = var.iam_instance_profile
   image_id                    = var.ami_id
   instance_type               = var.instance_type
   name_prefix                 = lower("${var.app_name}-bastion-lc")
