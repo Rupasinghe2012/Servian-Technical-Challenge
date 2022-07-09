@@ -21,7 +21,6 @@ module "postgres_rds" {
   security_group_ids    = [module.postgre_rds_sg.sg_id]
   enable_multi_az       = var.postgres_rds_vars["enable_multi_az"]
   ca_cert_identifier    = var.postgres_rds_vars["ca_cert_identifier"]
-  rds_aws_azs           = var.postgres_rds_vars["az"]
 
   tags = var.tags
 }

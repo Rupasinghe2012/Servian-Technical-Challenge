@@ -115,6 +115,47 @@ variable "postgres_rds_vars" {
   }
 
 }
+
+variable "cert_dns_name" {
+  type    = string
+  default = "*.ap-southeast-2.elb.amazonaws.com"
+}
+
+variable "cert_org_name" {
+  type    = string
+  default = "servian"
+}
+
+variable "cluster_name" {
+  description = "Name of the EKS cluster"
+  type        = string
+  default     = ""
+}
+
+variable "cluster_version" {
+  description = "Kubernetes `<major>.<minor>` version to use for the EKS cluster (i.e.: `1.22`)"
+  type        = string
+  default     = null
+}
+
+variable "cluster_endpoint_private_access" {
+  description = "Indicates whether or not the Amazon EKS private API server endpoint is enabled"
+  type        = bool
+  default     = true
+}
+
+variable "cluster_endpoint_public_access" {
+  description = "Indicates whether or not the Amazon EKS public API server endpoint is enabled"
+  type        = bool
+  default     = false
+}
+
+variable "enable_irsa" {
+  description = "Determines whether to create an OpenID Connect Provider for EKS to enable IRSA"
+  type        = bool
+  default     = true
+}
+
 variable "tags" {
   description = "Required map(string). AWS tags."
   type        = map(string)
