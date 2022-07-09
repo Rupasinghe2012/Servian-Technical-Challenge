@@ -2,7 +2,7 @@
 app_name     = "servian"
 aws_region   = "us-east-1"
 environment  = "dev"
-keypair_name = "servian-key"
+keypair_name = "servian-keypair"
 
 # VPC
 vpc_cidr         = "10.34.16.0/20"
@@ -24,7 +24,7 @@ postgres_rds_vars = {
     engine                     = "postgres"
     engine_version             = "13.6"
     auto_minor_version_upgrade = false
-    instance_class             = "db.t2.micro"
+    instance_class             = "db.t3.micro"
     instance_identifier        = "servian-postgres-dev"
     final_snapshot_identifier  = "servian-postgres-dev-snapshot"
     port                       = "5432"
@@ -39,6 +39,17 @@ postgres_rds_vars = {
     username                   = "postgres"
     az                         = "us-east-1c"
   }
+
+# Self-signed Certificate
+cert_dns_name = "*.us-east-1.elb.amazonaws.com"
+cert_org_name = "servian"
+
+# EKS Cluster
+cluster_name = "servian"
+cluster_version = 1.22
+cluster_endpoint_private_access = true
+cluster_endpoint_public_access  = false
+enable_irsa                     = true
 
 # Tags
 tags = {

@@ -21,15 +21,15 @@ module "vpc" {
 
   tags = var.tags
 
-  #   # Tags differ for Public and Private subnets for Kubernetes
-  #   private_subnet_tags = local.eks_cluster_name != null ? merge(
-  #     { "kubernetes.io/role/internal-elb" = "1" },
-  #     { "kubernetes.io/cluster/${local.eks_cluster_name}" = "shared" },
-  #     var.additional_priv_sn_tags
-  #   ) : merge( var.additional_priv_sn_tags)
-  #   public_subnet_tags = local.eks_cluster_name != null ? merge(
-  #     { "kubernetes.io/role/elb" = "1" },
-  #     { "kubernetes.io/cluster/${local.eks_cluster_name}" = "shared" },
-  #     var.additional_pub_sn_tags
-  #   ) : merge(var.additional_pub_sn_tags)
+  # Tags differ for Public and Private subnets for Kubernetes
+  private_subnet_tags = var.cluster_name != null ? merge(
+    { "kubernetes.io/role/internal-elb" = "1" },
+    { "kubernetes.io/cluster/${var.cluster_name}" = "shared" },
+    var.additional_priv_sn_tags
+  ) : merge(var.additional_priv_sn_tags)
+  public_subnet_tags = var.cluster_name != null ? merge(
+    { "kubernetes.io/role/elb" = "1" },
+    { "kubernetes.io/cluster/${var.cluster_name}" = "shared" },
+    var.additional_pub_sn_tags
+  ) : merge(var.additional_pub_sn_tags)
 }

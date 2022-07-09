@@ -228,7 +228,7 @@ resource "aws_eip" "nat" {
 resource "aws_nat_gateway" "this" {
   count = var.enable_nat_gateway ? local.nat_gateway_count : 0
 
-  allocation_id = aws_vpc.this.id
+  allocation_id = element(aws_eip.nat.*.id, count.index)
   subnet_id     = element(aws_subnet.public[*].id, count.index)
 
   tags = merge(
@@ -272,4 +272,11 @@ resource "aws_route_table_association" "database" {
 
   subnet_id      = element(aws_subnet.database[*].id, count.index)
   route_table_id = element(aws_route_table.database[*].id, count.index)
+}
+
+resource "aws_route_table_association" "public" {
+  count = length(var.public_subnets)
+
+  subnet_id      = element(aws_subnet.public[*].id, count.index)
+  route_table_id = element(aws_route_table.public[*].id, count.index)
 }
