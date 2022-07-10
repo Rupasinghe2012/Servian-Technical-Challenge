@@ -65,7 +65,7 @@ resource "null_resource" "bastion" {
   }
 
   provisioner "file" {
-    content = templatefile("${path.module}/servian-build.sh.tpl", {
+    content = templatefile("${path.module}/scripts/servian-build.sh.tpl", {
       vpc_id                              = var.vpc_id,
       domain_name                         = var.domain_name,
       region                              = var.region,
