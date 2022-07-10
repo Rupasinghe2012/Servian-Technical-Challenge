@@ -1,0 +1,115 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "serivan-app.fullname" . }}
+  labels:
+    {{- include "serivan-app.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "serivan-app.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "serivan-app.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "serivan-app.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          args: ['serve']
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          livenessProbe:
+            exec:
+              command: ["/bin/sh", "-c", "nc -z localhost 3000"]
+            initialDelaySeconds: 20
+            failureThreshold: 15
+            periodSeconds: 10
+          readinessProbe:
+            exec:
+              command: ["/bin/sh", "-c", "nc -z localhost 3000"]
+            initialDelaySeconds: 20
+            failureThreshold: 15
+            periodSeconds: 10
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            # Define the environment variable
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NODE_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: VTT_DBUSER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "serivan-app.fullname" . }}-secret
+                  key: dbuser
+            - name: VTT_DBPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "serivan-app.fullname" . }}-secret
+                  key: dbpassword
+            - name: VTT_DBNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "serivan-app.fullname" . }}-conf
+                  key: DbName
+            - name: VTT_DBPORT
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "serivan-app.fullname" . }}-conf
+                  key: DbPort
+            - name: VTT_DBHOST
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "serivan-app.fullname" . }}-conf
+                  key: DbHost
+            - name: VTT_LISTENHOST
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "serivan-app.fullname" . }}-conf
+                  key: ListenHost
+            - name: VTT_LISTENPORT
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ include "serivan-app.fullname" . }}-conf
+                  key: ListenPort
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
