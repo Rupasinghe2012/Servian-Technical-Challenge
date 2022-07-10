@@ -44,6 +44,11 @@ module "eks" {
     }
   }
 
+  fargate_profile_defaults = {
+    create_iam_role = false
+    iam_role_arn    = module.fargate_profile_role.iam_role_arn
+  }
+
   fargate_profiles = {
     fp-coredns = {
       name = "fp-coredns"

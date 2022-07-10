@@ -34,3 +34,15 @@ data "aws_iam_policy_document" "assume_role_ec2" {
     }
   }
 }
+
+# Assume Role Policy - Fargate --------------------------------------------------------------------------------
+data "aws_iam_policy_document" "assume_role_fargate" {
+  statement {
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["eks-fargate-pods.amazonaws.com"]
+    }
+  }
+}

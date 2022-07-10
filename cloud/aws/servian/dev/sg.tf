@@ -53,6 +53,14 @@ module "postgre_rds_sg" {
       source : ["${chomp(data.http.myip.body)}/32"]
       description : "Default DB Port"
     },
+    {
+      rule_type : "ingress",
+      from_port : var.postgres_rds_vars["port"],
+      to_port : var.postgres_rds_vars["port"],
+      protocol : "tcp",
+      source : var.private_subnets
+      description : "Private cidr access"
+    },
   ]
   rules_with_security_group_as_source = [
     {
@@ -62,23 +70,7 @@ module "postgre_rds_sg" {
       protocol : "tcp",
       source : module.bastion_sg.sg_id
       description : "Bastion DB Access"
-    },
-    {
-      rule_type : "ingress",
-      from_port : var.postgres_rds_vars["port"],
-      to_port : var.postgres_rds_vars["port"],
-      protocol : "tcp",
-      source : module.eks.cluster_security_group_id
-      description : "EKS Access"
-    },
-    {
-      rule_type : "ingress",
-      from_port : var.postgres_rds_vars["port"],
-      to_port : var.postgres_rds_vars["port"],
-      protocol : "tcp",
-      source : module.eks.node_security_group_id
-      description : "EKS Access"
-    },
+    }
   ]
   tags = var.tags
 }
