@@ -11,16 +11,16 @@ module "eks" {
   cluster_endpoint_public_access  = var.cluster_endpoint_public_access
   enable_irsa                     = var.enable_irsa
 
-  cluster_addons = {
-    # Note: https://docs.aws.amazon.com/eks/latest/userguide/fargate-getting-started.html#fargate-gs-coredns
-    coredns = {
-      resolve_conflicts = "OVERWRITE"
-    }
-    kube-proxy = {}
-    vpc-cni = {
-      resolve_conflicts = "OVERWRITE"
-    }
-  }
+  # cluster_addons = {
+  #   # Note: https://docs.aws.amazon.com/eks/latest/userguide/fargate-getting-started.html#fargate-gs-coredns
+  #   coredns = {
+  #     resolve_conflicts = "OVERWRITE"
+  #   }
+  #   kube-proxy = {}
+  #   vpc-cni = {
+  #     resolve_conflicts = "OVERWRITE"
+  #   }
+  # }
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.private_subnets
 
