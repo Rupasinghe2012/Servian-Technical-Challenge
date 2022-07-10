@@ -5,8 +5,8 @@ variable "bastion_public_ip_enabled" {
 }
 
 variable "iam_instance_profile" {
-    description = "IAM instance profile for the EKS workers"
-    type = string
+  description = "IAM instance profile for the EKS workers"
+  type        = string
 }
 
 variable "ami_id" {
