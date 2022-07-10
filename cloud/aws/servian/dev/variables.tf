@@ -156,6 +156,15 @@ variable "enable_irsa" {
   default     = true
 }
 
+variable "eks_arn_user_list" {
+  description = "IAM user arn List for EKS access"
+  type = list(string)
+}
+
+variable "domain_name" {
+  description = "domain name for the app"
+}
+
 variable "tags" {
   description = "Required map(string). AWS tags."
   type        = map(string)

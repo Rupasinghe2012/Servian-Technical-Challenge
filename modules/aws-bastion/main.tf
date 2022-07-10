@@ -7,16 +7,13 @@ cat <<EOF > /etc/profile.d/bastion.sh
 export PATH=$PATH:/usr/local/bin
 EOF
 
-# Install dependencias
+# Install dependencies
 yum update -y
 yum install -y git vim telnet jq cifs-utils unzip telnet nc python3-pip python3 python3-setuptools
 yum install -y amazon-efs-utils
 
 # Install HELM
-curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-chmod 700 get_helm.sh
-./get_helm.sh
-rm get_helm.sh
+curl -L https://git.io/get_helm.sh | bash -s -- --version v3.8.2
 
 # Install KUBECTL
 curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.23.6/bin/linux/amd64/kubectl
@@ -41,7 +38,7 @@ USERDATA
 # launch configuration for the bastion server
 resource "aws_launch_configuration" "bastion_server" {
   associate_public_ip_address = var.bastion_public_ip_enabled
-  iam_instance_profile = var.iam_instance_profile
+  iam_instance_profile        = var.iam_instance_profile
   image_id                    = var.ami_id
   instance_type               = var.instance_type
   name_prefix                 = lower("${var.app_name}-bastion-lc")
