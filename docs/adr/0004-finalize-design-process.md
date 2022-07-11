@@ -8,16 +8,16 @@ Accepted
 
 ## Context
 
-Should we draw a diagram to get a clear idea on the how the design decision are taken.
+Should we draw a diagram to get a clear idea of how the design decision is taken?
 
 ## Decision
 
-Design Process FlowChart was drawn to get the High level idea how the decision was decided..
+Design Process FlowChart was drawn to get a High-level idea of how the decision was decided..
 
-Following things were considered when drawing the diagram:
+The following things were considered when drawing the diagram:
   * requirements
-  * suported technologies
-  * compatebilities/ incompatibilities among technologies
+  * supported technologies
+  * compatibilities/ incompatibilities among technologies
 
 ![Design Process FlowChart](https://drive.google.com/uc?export=view&id=1Ugzge6ZIIzo1m-3M3U8dK_eXR0idpZtG)
 

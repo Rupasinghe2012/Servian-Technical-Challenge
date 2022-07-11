@@ -1,17 +1,21 @@
 variable "environment" {
   default = "test"
+  description = "Environment name"
 }
 
 variable "aws_region" {
   default = "us-east-1"
+  description = "AWS Region this infrastracture is deployed"
 }
 
 variable "vpc_cidr" {
   default = "20.10.0.0/16"
+  description = "VPC CIDR block"
 }
 
 variable "app_name" {
   default = "servian"
+  description = "Application name that is deployed"
 }
 
 variable "public_subnets" {
@@ -158,7 +162,7 @@ variable "enable_irsa" {
 
 variable "eks_arn_user_list" {
   description = "IAM user arn List for EKS access"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "domain_name" {

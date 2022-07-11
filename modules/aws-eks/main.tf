@@ -2,7 +2,7 @@ data "aws_partition" "current" {}
 data "aws_caller_identity" "current" {}
 
 locals {
-  create = var.create 
+  create       = var.create
   cluster_role = try(aws_iam_role.this[0].arn, var.iam_role_arn)
 }
 
@@ -155,8 +155,6 @@ locals {
   iam_role_name     = coalesce(var.iam_role_name, "${var.cluster_name}-cluster")
   policy_arn_prefix = "arn:${data.aws_partition.current.partition}:iam::aws:policy"
 
-  # TODO - hopefully this can be removed once the AWS endpoint is named properly in China
-  # https://github.com/terraform-aws-modules/terraform-aws-eks/issues/1904
   dns_suffix = coalesce(var.cluster_iam_role_dns_suffix, data.aws_partition.current.dns_suffix)
 }
 
