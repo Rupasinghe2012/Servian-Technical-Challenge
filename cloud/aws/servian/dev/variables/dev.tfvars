@@ -50,8 +50,10 @@ cluster_endpoint_private_access = true
 cluster_endpoint_public_access  = false
 enable_irsa                     = true
 
+# Servian Build
 eks_arn_user_list = ["arn:aws:iam::380811051426:user/iruka"]
 domain_name       = "preprod-dev.servian.cloud"
+
 # Tags
 tags = {
   "Client"      = "servian",
