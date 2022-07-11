@@ -92,7 +92,7 @@ metadata:
   namespace: kube-system
 rules:
 - apiGroups: [""]
-  resources: ["services","endpoints","pods"]
+  resources: ["services","endpoints","pods","nodes"]
   verbs: ["get","watch","list"]
 - apiGroups: ["extensions","networking.k8s.io"]
   resources: ["ingresses"]
@@ -134,7 +134,7 @@ spec:
       serviceAccountName: external-dns
       containers:
       - name: external-dns
-        image: k8s.gcr.io/external-dns/external-dns:v0.7.3
+        image: docker.io/bitnami/external-dns:0.12.0-debian-11-r9
         args:
         - --source=service
         - --source=ingress
