@@ -41,7 +41,7 @@ module "bastian_server" {
 | ami_id | The AMI to use for the instance | string | `"ami-098f49793dc110d98"` | yes |
 | instance_type | The type of instance to start | string | `"t2.medium"` | yes |
 | instance_security_groups | A list of security group names | list | `""` | yes |
-| instance_keypair | The key name of the Key Pair to use for the instance | string | `"AWS-DAI-NONPROD"` | yes |
+| instance_keypair | The key name of the Key Pair to use for the instance | string | `"AWS-NONPROD"` | yes |
 | subnet_ids | list of subnet IDs | list | `""` | yes |
 | block_volume_size | The size of the volume in gibibytes | string | `"300"` | yes |
 | block_delete_on_termination | Whether the volume should be destroyed on instance termination | string | `"true"` | yes |

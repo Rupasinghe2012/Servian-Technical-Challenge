@@ -8,9 +8,9 @@ A Terraform module contains the creation of the IAM Policy
 module "dev_k8s_policy" {
   source = "../../../modules/aws-infra/aws-iam/iam-policy"
 
-  policy_name        = "dai-dev-k8s"
-  description = "Group Policy for DAI Dev"
-  policy_path    = "${file("policies/dai_dev_policy.json.tpl")}"
+  policy_name        = "dev-k8s"
+  description = "Group Policy for Dev"
+  policy_path    = "${file("policies/dev_policy.json.tpl")}"
 }
 ```
 

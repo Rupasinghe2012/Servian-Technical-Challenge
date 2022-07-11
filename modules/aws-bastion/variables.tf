@@ -29,7 +29,7 @@ variable "instance_security_groups" {
 variable "instance_keypair" {
   description = "Bastion instance keypair name"
   type        = string
-  default     = "AWS-DAI-NONPROD"
+  default     = "AWS-NONPROD"
 }
 
 variable "block_volume_size" {
