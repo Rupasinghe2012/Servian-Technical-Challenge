@@ -3,9 +3,9 @@
 [![Release][release-badge]][release]
 [![License][license-badge]][license]
 
-[release-badge]: https://img.shields.io/github/release/Rupasinghe2012/Servian-Technical-Challenge/all.svg?style=flat
+[release-badge]: https://img.shields.io/github/release/Rupasinghe2012/Servian-Technical-Challenge/all.svg?style=flat&color=brightgreen
 [release]:https://github.com/Rupasinghe2012/Servian-Technical-Challenge/releases
-[license-badge]: https://img.shields.io/github/license/Rupasinghe2012/Servian-Technical-Challenge.svg?style=flat
+[license-badge]: https://img.shields.io/github/license/Rupasinghe2012/Servian-Technical-Challenge.svg?style=flat&color=lightgrey
 [license]: https://github.com/Rupasinghe2012/Servian-Technical-Challenge/license
 
 Introduction
@@ -18,8 +18,7 @@ This is the Servian Tech challenge solution code repository to build and deploy 
 * AWS CLI
 * Terraform Core installed ( v1.0.4 or higher)
 * Makefile runtime (Ability to run Makefile)
-* CLI Utilities: , etc.
-* Network reachability to "http://ipv4.icanhazip.com" (in evaluating public IP of Terraform Core workstation for whitelisting)
+* CLI Utilities: , etc.* Network reachability to "http://ipv4.icanhazip.com" (in evaluating public IP of Terraform Core workstation for whitelisting)
 
 
 ## Architecture
@@ -35,8 +34,7 @@ This is the Servian Tech challenge solution code repository to build and deploy 
 | [cloud](./cloud) | Contains Terraform configuaration needed to spinup the infrastructure on which TechChallengeApp will be deplyed on.                                                      |
 | [modules](./modules)     | Contains AWS Terraform modules and helm charts needed to spinup infrastrcture                                                                                    |
 | [init_backend](./init_backend)     | Contains the configurations for Terraform state bucket creation                                                                                        |
-
-
+| [docs](./docs)  | Contains the document related to the solution.                                                                  |
 
 ## Process and Instructions - Infrastructure Creation and Configuration
 
@@ -47,6 +45,7 @@ Requirements to create a new environment are:
 
 Remember to create files under relavent environment folder "cloud/aws/servian/#ENV#/".
 According to the environment you only needed to create a ${ENV}.tfvar file under this folder "cloud/aws/servian/#ENV#/variables/"
+
 Ex: 
 -  dev.tfvars
 
@@ -121,6 +120,9 @@ terraform apply .terraform/terraform.tfplan
 cd cloud/aws/servian/${ENVIRONMENT}
 terraform destroy -var-file="variables/${ENVIRONMENT}.tfvars"
 ```
+### DEMO
+
+(More details on Accessing the actually deployed Servian Tech Challenge APP and screenshots can be found in [Demo](docs/demo/README.md))
 
 My(Iruka's) Work Breakdown
 -------------------------------
