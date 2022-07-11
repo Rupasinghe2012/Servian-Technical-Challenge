@@ -1,4 +1,4 @@
-# Servian-Technical-Challenge - Architecture Design Records
+# Servian-Technical-Challenge - Architecture Design Records (ADR)
 
 - [1. Architecture Design Records](0001-record-architecture-decisions.md)
 - [2. Selection of cloud provider](0002-selection-of-cloud-provider.md)

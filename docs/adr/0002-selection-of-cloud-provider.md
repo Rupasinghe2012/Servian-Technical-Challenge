@@ -8,7 +8,7 @@ Accepted
 
 ## Context
 
-Infrastracture needed to be build on a Cloud platform. So we needed to decide on which cloud platform we should use?
+The infrastructure needed to be built on a Cloud platform. So we needed to decide on which cloud platform we should use?
 
 ## Decision
 
@@ -19,7 +19,7 @@ Infrastracture needed to be build on a Cloud platform. So we needed to decide on
 * Selected |**AWS**| as cloud provider considering,
   * Best knowledgable area
   * Time constraints
-  * Past expireinces with cloud provider
+  * Past experiences with cloud provider
 
 ## Consequences
 

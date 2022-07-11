@@ -8,7 +8,7 @@ Accepted
 
 ## Context
 
-Drawing a High Level Architecture diagram for documentation purpose of the solution.
+Drawing a High-Level Architecture diagram for documentation purpose of the solution.
 
 ## Decision
 
